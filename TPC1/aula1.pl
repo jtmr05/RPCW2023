@@ -10,7 +10,7 @@ use JSON;
 use constant JSON_PATH     => 'mapa.json';
 use constant OUTPUT_PATH   => 'output.html';
 
-use constant OUTPUT_BEGIN  => 
+use constant BEGIN_HTML    => 
 q{
 <html>
     <head>
@@ -26,14 +26,14 @@ q{
                     <!-- Lista com o Índice -->
 };
 
-use constant OUTPUT_MIDDLE => 
+use constant MIDDLE_HTML   => 
 q{
                 </td>
                 <td width="70%">
                     <!---- Informação das Cidades -->
 };
 
-use constant OUTPUT_END    => 
+use constant END_HTML      => 
 q{
                 </td>
             </tr>
@@ -77,7 +77,7 @@ sub write_html($cities_ref){
 
 	open my $fh, '>:utf8', OUTPUT_PATH or die "$!";
 
-	print $fh OUTPUT_BEGIN;
+	print $fh BEGIN_HTML;
 
 	foreach(@cities){
 
@@ -88,7 +88,7 @@ sub write_html($cities_ref){
 		say $fh $template;
 	}
 
-	print $fh OUTPUT_MIDDLE;
+	print $fh MIDDLE_HTML;
 
 	foreach(@cities){
 
@@ -103,7 +103,7 @@ sub write_html($cities_ref){
 		say $fh $template;
 	}
 
-	print $fh OUTPUT_END;
+	print $fh END_HTML;
 
 	close $fh;
 }
@@ -112,11 +112,10 @@ sub write_html($cities_ref){
 sub main(){
 
 	my $json_str = get_json_str();
-	my %json_hash = %{decode_json $json_str};
+	my %json_as_hash = %{decode_json $json_str};
 
-	my @cities = sort { ${$a}{'nome'} cmp ${$b}{'nome'} } @{$json_hash{'cidades'}};
+	my @cities = sort { ${$a}{'nome'} cmp ${$b}{'nome'} } @{$json_as_hash{'cidades'}};
 	write_html(\@cities);
 }
-
 
 main();
