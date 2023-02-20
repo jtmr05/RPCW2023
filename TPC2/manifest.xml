@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+
+	<meta>
+
+		<title>TPC1: Introdução ao HTML</title>
+		<subtitle>Webpage baseada num dataset e Webpage com a letra 'H'</subtitle>
+		<date>2023-02-13</date>
+		<author>
+			<name>Joaquim T. Roque</name>
+			<id>PG50502</id>
+			<gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
+		</author>
+		<uc>Representação e Processamento de Conhecimento na Web</uc>
+
+	</meta>
+
+	<summary>
+
+		<p>A partir de um dataset no formato JSON (<i>JavaScript Object Notation</i>),
+			é-nos proposto que se gere um HTML a partir de um <i>template</i>, previamente
+			estabelecido na aula.
+		</p>
+
+		<p>Para a segunda tarefa do TPC 1, devemos criar uma ou mais páginas <i>web</i>,
+			com a sofisticação e complexidade desejadas, tendo por base um conjunto de temas
+			sugeridos.
+		</p>
+
+	</summary>
+
+	<results>
+
+		<result path="cidades/generator.pl">
+			Script em Perl que gera o ficheiro HTML
+		</result>
+
+		<result path="cidades/template.html">
+			Template do ficheiro a ser gerado
+		</result>
+
+		<result path="cidades/mapa.json">
+			Dataset no formato JSON
+		</result>
+
+		<result path="hungria/index.html">
+			Página principal da segunda tarefa
+		</result>
+
+		<result path="hungria/index.html">
+			Página principal da segunda tarefa
+		</result>
+
+		<result path="hungria/table.html">
+			Ficheiro HTML que contém a tabela referida na página principal
+		</result>
+
+	</results>
+</manifest>
