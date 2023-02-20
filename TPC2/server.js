@@ -8,22 +8,41 @@ const fs   = require('fs');
 const PORT = 8080;
 const DIR  = 'out/'
 
-let number_of_requests = 0;
+
+function annotate(str, ...ansiEscapeCodes){
+
+	if(ansiEscapeCodes.length === 0)
+		return str;
+
+	let result = '\033[' + ansiEscapeCodes.at(0);
+
+	for(let i = 1; i < ansiEscapeCodes.length; ++i){
+		result += ';' + ansiEscapeCodes.at(i);
+	}
+
+	result += 'm' + str + '\033[0m';
+
+	return result;
+}
+
+
+let numberOfRequests = 0;
 
 const server = http.createServer(
 
 	(req, res) => {
 
-		++number_of_requests;
+		++numberOfRequests;
 
 		console.log(
-			"Received request number \033[1;32m" + number_of_requests +
-			"\033[0m: \033[1m" + req.url + "\033[0m"
+			"Received request number " + annotate(numberOfRequests, 1, 32) +
+			": " + annotate(req.url, 1)
 		);
 
-		const url_object = url.parse(req.url);
-		const file_id    = url_object.pathname.substring(1);
-		const filename   = `${DIR}arq${file_id}.xml`;
+		const urlObject = url.parse(req.url);
+		const fileId    = urlObject.pathname.substring(1);
+		const filename  = (fileId === '') ? 'index.html' : `${DIR}arq${fileId}.xml`;
+		const mimeType  = (fileId === '') ? 'text/html'  : 'text/xml';
 
 
 		fs.readFile(
@@ -39,13 +58,14 @@ const server = http.createServer(
 					res.write(`Error loading file '${filename}': ${err.message}`);
 
 					console.log(
-						"\033[1;31mError\033[0m: Request '" + req.url +
-						"' yielded an error: \033[1m" + err.message + "\033[0m"
+						annotate("Error", 1, 31) +
+						`: Request '${req.url}' yielded an error: ` +
+						annotate(err.message, 1)
 					);
 				}
 				else{
 
-					res.writeHead(200, {'Content-Type': 'text/xml; charset=utf-8'});
+					res.writeHead(200, {'Content-Type': `${mimeType}; charset=utf-8`});
 					res.write(data);
 				}
 
