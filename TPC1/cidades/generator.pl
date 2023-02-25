@@ -1,9 +1,8 @@
 #!/usr/bin/env perl
 
-use strict;
-use warnings;
-use utf8;
 use v5.36;
+use utf8;
+use autodie;
 use JSON;
 
 
@@ -64,15 +63,11 @@ q{
 
 sub get_json_str(){
 
-    open my $fh, '<', JSON_PATH or die "$!";
+    open my $fh, '<', JSON_PATH;
 
     local $/ = undef;
 
-    my $json_str = <$fh>;
-
-    close $fh;
-
-    return $json_str;
+    return <$fh>;
 }
 
 
@@ -82,7 +77,7 @@ sub write_html($cities_ref, $graph_ref, $id_to_name_ref){
     my %graph      = %{$graph_ref};
     my %id_to_name = %{$id_to_name_ref};
 
-    open my $fh, '>:utf8', OUTPUT_PATH or die "$!";
+    open my $fh, '>:utf8', OUTPUT_PATH;
 
     say $fh BEGIN_HTML;
 
@@ -131,9 +126,6 @@ sub write_html($cities_ref, $graph_ref, $id_to_name_ref){
     }
 
     say $fh END_HTML;
-
-
-    close $fh;
 }
 
 
@@ -191,7 +183,7 @@ sub get_id_to_name_hash($cities_ref){
 sub main(){
 
     my $json_str = get_json_str();
-    my %json_as_hash = %{decode_json $json_str};
+    my %json_as_hash = %{JSON::decode_json $json_str};
 
     my @cities = sort { ${$a}{'nome'} cmp ${$b}{'nome'} } @{$json_as_hash{'cidades'}};
     my @links  = sort { ${$a}{'origem'} cmp ${$b}{'origem'} } @{$json_as_hash{'ligações'}};

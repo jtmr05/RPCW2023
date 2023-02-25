@@ -3,7 +3,8 @@
 all: index.html
 
 index.html:
-	@./generator.pl
+	@./xml_generator.pl
+	@./html_generator.py
 
 .PHONY: clean
 clean:

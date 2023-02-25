@@ -26,55 +26,102 @@ function annotate(str, ...ansiEscapeCodes){
 }
 
 
-let numberOfRequests = 0;
+function main(){
 
-const server = http.createServer(
+	let contentMimeType = undefined;
 
-	(req, res) => {
+	process.argv.forEach(
 
-		++numberOfRequests;
+		(val, index, arr) => {
 
-		console.log(
-			"Received request number " + annotate(numberOfRequests, 1, 32) +
-			": " + annotate(req.url, 1)
-		);
+			if(index < 2)
+				return;
 
-		const urlObject = url.parse(req.url);
-		const fileId    = urlObject.pathname.substring(1);
-		const filename  = (fileId === '') ? 'index.html' : `${DIR}arq${fileId}.xml`;
-		const mimeType  = (fileId === '') ? 'text/html'  : 'text/xml';
+			switch(val){
 
+				case '--as-xml':
+					contentMimeType = 'xml';
+					break;
 
-		fs.readFile(
+				case '--as-html':
+					contentMimeType = 'html';
+					break;
 
-			filename,
-
-			(err, data) => {
-
-				if(err){
-
-					res.writeHead(404, {'Content-Type': 'text/plain; charset=utf-8'});
-
-					res.write(`Error loading file '${filename}': ${err.message}`);
-
-					console.log(
-						annotate("Error", 1, 31) +
-						`: Request '${req.url}' yielded an error: ` +
-						annotate(err.message, 1)
-					);
-				}
-				else{
-
-					res.writeHead(200, {'Content-Type': `${mimeType}; charset=utf-8`});
-					res.write(data);
-				}
-
-				res.end();
+				default:
+					console.error(`${process.argv[1]}: ${val}: invalid option`);
+					break;
 			}
+		}
+	);
+
+	if(contentMimeType === undefined){
+		console.error(
+			`${process.argv[1]}: missing operand\n` +
+			`usage: ${process.argv[1]} [option]\n\n` +
+			'available options:\n' +
+			'--as-xml\t\tserve content as XML\n' +
+			'--as-html\t\tserve content as HTML'
 		);
+
+		process.exit(1);
 	}
-);
 
-server.listen(PORT);
 
-console.log(`Server now listening on port ${PORT}...`);
+	let numberOfRequests = 0;
+
+	const server = http.createServer(
+
+		(req, res) => {
+
+			++numberOfRequests;
+
+			console.log(
+				"Received request number " + annotate(numberOfRequests, 1, 32) +
+				": " + annotate(req.url, 1)
+			);
+
+			const urlObject = url.parse(req.url);
+			const fileId    = urlObject.pathname.substring(1);
+			const filename  = (fileId === '') ? 'index.html' : `${DIR}arq${fileId}.${contentMimeType}`;
+			const mimeType  = (fileId === '') ? 'text/html'  : `${contentMimeType}`;
+
+
+			fs.readFile(
+
+				filename,
+
+				(err, data) => {
+
+					if(err){
+
+						res.writeHead(404, {'Content-Type': 'text/plain; charset=utf-8'});
+
+						res.write(`Error loading file '${filename}': ${err.message}`);
+
+						console.log(
+							annotate("Error", 1, 31) +
+							`: Request '${req.url}' yielded an error: ` +
+							annotate(err.message, 1)
+						);
+					}
+					else{
+
+						res.writeHead(200, {'Content-Type': `${mimeType}; charset=utf-8`});
+						res.write(data);
+					}
+
+					res.end();
+				}
+			);
+		}
+	);
+
+	server.listen(PORT);
+
+	console.log(
+		`Server now listening on port ${PORT} ` +
+		`serving content as ${annotate(contentMimeType.toUpperCase(), 1)}...`
+	);
+}
+
+main();

@@ -1,59 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
 
-	<meta>
+  <meta>
 
-		<title>TPC1: Introdução ao HTML</title>
-		<subtitle>Webpage baseada num dataset e Webpage com a letra 'H'</subtitle>
-		<date>2023-02-13</date>
-		<author>
-			<name>Joaquim T. Roque</name>
-			<id>PG50502</id>
-			<gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
-		</author>
-		<uc>Representação e Processamento de Conhecimento na Web</uc>
+	<title>TPC2: Introdução ao NodeJS</title>
+	<subtitle>Implementação de um servidor de ficheiros XML e HTML em NodeJS</subtitle>
+	<date>2023-02-20</date>
+	<author>
+	  <name>Joaquim T. Roque</name>
+	  <id>PG50502</id>
+	  <gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
+	</author>
+	<uc>Representação e Processamento de Conhecimento na Web</uc>
 
-	</meta>
+  </meta>
 
-	<summary>
+  <summary>
 
-		<p>A partir de um dataset no formato JSON (<i>JavaScript Object Notation</i>),
-			é-nos proposto que se gere um HTML a partir de um <i>template</i>, previamente
-			estabelecido na aula.
-		</p>
+	<p>A partir de um dado <i>dataset</i> XML, é-nos proposto que se desmembre o mesmo
+	numa série de ficheiros, identificados por um número.
+	Os mesmos devem depois ser servidos através de um servidor, implementado em Javascript,
+	de acordo com a rota especificada pelo cliente.
+	Em seguida, devemos também gerar um página HTML para os clientes que acedam à rota raiz
+	do <i>website</i>.
+	Finalmente, devemos ainda converter cada um dos ficheiros XML em HTML, usado a
+	biblioteca de Python <b>BeautifulSoup</b>. Para tal, será também necessário adicionar
+	essa funcionalidade ao servidor. Ou seja, o mesmo deve poder servir contéudo em ambos os
+	formatos.
 
-		<p>Para a segunda tarefa do TPC 1, devemos criar uma ou mais páginas <i>web</i>,
-			com a sofisticação e complexidade desejadas, tendo por base um conjunto de temas
-			sugeridos.
-		</p>
+  </summary>
 
-	</summary>
+  <results>
 
-	<results>
+	<result path="server.js">
+	  Servidor NodeJS
+	</result>
 
-		<result path="cidades/generator.pl">
-			Script em Perl que gera o ficheiro HTML
-		</result>
+	<result path="xml_generator.pl">
+	  Script em Perl que desmembra o <i>dataset</i> de <i>input</i> e gera o 'index.html'
+	</result>
 
-		<result path="cidades/template.html">
-			Template do ficheiro a ser gerado
-		</result>
+	<result path="html_generator.py">
+	  Script em Python que converte os XML em HTML com recurso ao <i>BeautifulSoup</i>
+	</result>
 
-		<result path="cidades/mapa.json">
-			Dataset no formato JSON
-		</result>
+	<result path="arq.xml">
+	  <i>Dataset</i> de entrada
+	</result>
 
-		<result path="hungria/index.html">
-			Página principal da segunda tarefa
-		</result>
+  </results>
 
-		<result path="hungria/index.html">
-			Página principal da segunda tarefa
-		</result>
-
-		<result path="hungria/table.html">
-			Ficheiro HTML que contém a tabela referida na página principal
-		</result>
-
-	</results>
 </manifest>

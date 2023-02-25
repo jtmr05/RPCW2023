@@ -1,10 +1,8 @@
 #!/usr/bin/env perl
 
-use strict;
-use warnings;
+use v5.36;
 use autodie;
 use utf8;
-use v5.36;
 
 use constant ARQELEM_PATTERN => qr{<ARQELEM>.+</ARQELEM>$}s;
 use constant IDENT_PATTERN   => qr{<IDENTI>\s*(.+?)\s*</IDENTI>}s;
@@ -65,15 +63,18 @@ sub main(){
 
 		next if($_ !~ ARQELEM_PATTERN);
 
-		open my $output_fh, '>:utf8', XML_DIR . "arq${file_index}.xml"; 
+		my $inner_content = ($& =~ s|^(\s+)|substr $1, 0, (length $1) / 2|regm);
+		#my $inner_content = $&;
+
+		open my $output_fh, '>:utf8', XML_DIR . "arq${file_index}.xml";
 		say $output_fh XML_DECL;
-		say $output_fh $&;
+		say $output_fh $inner_content;
 
 		# would be closed anyway
 		# only here for error checking
 		close $output_fh;
 
-		if($_ =~ IDENT_PATTERN){
+		if($inner_content =~ IDENT_PATTERN){
 			$name_to_index{$1} = $file_index;
 		}
 	}
