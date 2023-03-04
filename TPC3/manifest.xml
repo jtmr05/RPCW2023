@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+
+  <meta>
+
+	<title>TPC2: Introdução ao NodeJS</title>
+	<subtitle>Implementação de um servidor de ficheiros XML e HTML em NodeJS</subtitle>
+	<date>2023-02-20</date>
+	<author>
+	  <name>Joaquim T. Roque</name>
+	  <id>PG50502</id>
+	  <gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
+	</author>
+	<uc>Representação e Processamento de Conhecimento na Web</uc>
+
+  </meta>
+
+  <summary>
+
+	<p>A partir de um dado <i>dataset</i> XML, é-nos proposto que se desmembre o mesmo
+	numa série de ficheiros, identificados por um número.
+	Os mesmos devem depois ser servidos através de um servidor, implementado em Javascript,
+	de acordo com a rota especificada pelo cliente.
+	Em seguida, devemos também gerar um página HTML para os clientes que acedam à rota raiz
+	do <i>website</i>.
+	Finalmente, devemos ainda converter cada um dos ficheiros XML em HTML, usado a
+	biblioteca de Python <b>BeautifulSoup</b>. Para tal, será também necessário adicionar
+	essa funcionalidade ao servidor. Ou seja, o mesmo deve poder servir contéudo em ambos os
+	formatos.
+
+  </summary>
+
+  <results>
+
+	<result path="server.js">
+	  Servidor NodeJS
+	</result>
+
+	<result path="xml_generator.pl">
+	  Script em Perl que desmembra o <i>dataset</i> de <i>input</i> e gera o 'index.html'
+	</result>
+
+	<result path="html_generator.py">
+	  Script em Python que converte os XML em HTML com recurso ao <i>BeautifulSoup</i>
+	</result>
+
+	<result path="arq.xml">
+	  <i>Dataset</i> de entrada
+	</result>
+
+  </results>
+
+</manifest>
