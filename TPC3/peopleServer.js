@@ -6,8 +6,8 @@ const url     = require('url');
 const axios   = require('axios');
 const myPages = require('./myPages');
 
-const W3CSS_PATH = 'resources/w3.css';
-const PORT       = 8000;
+const RESOURCES_DIR = 'resources';
+const PORT          = 8000;
 
 http.createServer(
 
@@ -91,28 +91,32 @@ http.createServer(
 					}
 				);
 		}
-		else if(dictUrl.pathname === '/w3.css'){
+		else {
+
+			const fileExt =
+				dictUrl.pathname.match(/\.(.+)$/)
+					? dictUrl.pathname.match(/\.(.+)$/)[1]
+					: 'txt';
 
 			fs.readFile(
 
-				W3CSS_PATH,
+				RESOURCES_DIR + dictUrl.pathname,
 
 				(error, data) => {
 
-					res.writeHead(200, {'Content-Type': 'text/css; charset=utf-8'});
 
-					if(error)
-						res.write(`Error: ${error}`);
-					else
+					if(error){
+						res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'});
+						res.write(`${error}`);
+					}
+					else {
+						res.writeHead(200, {'Content-Type': `text/${fileExt}; charset=utf-8`});
 						res.write(data);
+					}
 
 					res.end();
 				}
 			);
-		}
-		else {
-			res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'});
-			res.end(`Error: Operation not supported`);
 		}
 	}
 ).listen(PORT);

@@ -2,7 +2,7 @@
 exports.pessoasPage = list => {
 
 	let htmlBegin = `
-		
+
 		<!DOCTYPE html>
 		<html>
 
@@ -26,7 +26,7 @@ exports.pessoasPage = list => {
 
 						<table class="w3-table-all">
 
-							<tr> 
+							<tr>
 								<th>Id</th>
 								<th>Nome</th>
 								<th>Idade</th>
@@ -39,13 +39,18 @@ exports.pessoasPage = list => {
 		(elem, _, __) =>
 
 			htmlBegin += `
-				<tr>
-					<td>${elem.id}</td>
-					<td>${elem.nome}</td>
-					<td>${elem.idade}</td>
-					<td>${elem.sexo}</td>
-				    <td>${elem.morada.cidade}</td>
-				</tr>`
+					<tr>
+						<td>${elem.id}</td>
+						<td>
+							<a href="${elem.id}.html" class="w3-button ">
+								${elem.nome}
+							</a>
+						</td>
+						<td>${elem.idade}</td>
+						<td>${elem.sexo}</td>
+						<td>${elem.morada.cidade}</td>
+					</tr>
+				</a>`
 	);
 
 	const htmlEnd = `
@@ -55,7 +60,7 @@ exports.pessoasPage = list => {
 			<footer class="w3-containter w3-blue">
 				<h5>Rodapé</h5>
 			</footer>
-		</div> 
+		</div>
 	</body>
 </html>`;
 
