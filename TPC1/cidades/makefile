@@ -3,7 +3,7 @@
 all: index.html
 
 index.html:
-	@./generator.pl
+	./generator.pl
 
 .PHONY: clean
 clean:

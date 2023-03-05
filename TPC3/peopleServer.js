@@ -17,7 +17,32 @@ http.createServer(
 
 		const dictUrl = url.parse(req.url, true);
 
+
 		if(dictUrl.pathname === '/'){
+
+			axios.get(`http://localhost:3000/pessoas${dictUrl.search ? dictUrl.search : ''}`)
+				.then(
+
+					resp => {
+
+						const people = resp.data;
+
+						res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+						res.end(myPages.pessoasPage(people));
+					}
+
+				)
+				.catch(
+
+					error => {
+
+						console.log(`Error: ${error}`);
+						res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+						res.end(`Error: ${error}`);
+					}
+				);
+		}
+		else if(dictUrl.pathname === '/sexo'){
 
 			axios.get('http://localhost:3000/pessoas')
 				.then(
@@ -27,7 +52,7 @@ http.createServer(
 						const people = resp.data;
 
 						res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-						res.end(myPages.pessoasPage(people));
+						res.end(myPages.perSex(people));
 					}
 
 				)
