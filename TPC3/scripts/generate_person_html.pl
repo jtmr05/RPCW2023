@@ -6,7 +6,7 @@ use utf8;
 use JSON;
 
 use constant OUTPUT_DIR => 'resources/';
-use constant JSON_PATH  => 'dataset/dataset-extra1.json';
+use constant JSON_PATH  => 'dataset/dataset.json';
 
 use constant BEGIN_HTML =>
 q{

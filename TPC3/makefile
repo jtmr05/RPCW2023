@@ -10,7 +10,7 @@ REGEX := 'local $$/ = undef; while(<>){ s/^\s+"id"\s+:.*$$//mg;  s/,\s+\}/\}/g; 
 
 .PHONY: clean
 clean:
-	-perl -i -e $(REGEX) dataset/dataset-extra1.json
+	-perl -i -e $(REGEX) dataset/dataset.json
 	-rm -f package-lock.json
 	-rm -f resources/*.html
 	-rm -rf node_modules

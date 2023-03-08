@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node_modules/json-server/lib/cli/bin.js --watch $1
+node_modules/json-server/lib/cli/bin.js --watch dataset/dataset.json
