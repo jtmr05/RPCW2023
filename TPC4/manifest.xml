@@ -3,7 +3,7 @@
 
   <meta>
 
-    <title>TPC3: Serviço de consulta sobre um <i>dataset</i></title>
+    <title>TPC4: Desenvolvimento de uma <i>ToDo List</i></title>
     <date>2023-02-27</date>
     <author>
       <name>Joaquim T. Roque</name>
@@ -16,25 +16,21 @@
 
   <summary>
 
-    Tendo como ponto de partida o caso de estudo da aula, é pretentido que se adicionem
-    novas funcionalidades ao servidor de consulta do conjunto de dados. Estas variam
-	desde gerar páginas HMTL para cada pessoa no <i>dataset</i>, a distribuir as mesmas
-	de acordo com um determinado critério (por exemplo, distribuição por sexo).
+    Aplicando os conhecimentos adquiridos sobre formulários HTML e métodos HTTP (<b>POST</b> e
+    <b>GET</b>), é-nos proposto que se desenvolve uma pequena <i>webpage</i>, cujo objetivo é
+    funcionar como uma <i>ToDo List</i>, ou seja, deverá suportar a possibilidade de se adicionarem
+    novas tarefas, bem como finalizar/remover uma tarefa.
 
   </summary>
 
   <results>
 
-	<result path="peopleServer.js">
+    <result path="server.js">
       Servidor NodeJS
     </result>
 
-	<result path="scripts/generate_person_html.pl">
-	  Script em Perl que gera uma página HTML por pessoa no <i>dataset</i>
-    </result>
-
-    <result path="myPages.js">
-      Módulo Javascript para respostas HTML adicionais do servidor
+    <result path="htmlPage.js">
+      Módulo que contém a função geradora do HTML da página
     </result>
 
   </results>
