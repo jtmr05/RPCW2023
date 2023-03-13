@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+
+  <meta>
+
+    <title>TPC4: Desenvolvimento de uma <i>ToDo List</i></title>
+    <date>2023-03-13</date>
+    <author>
+      <name>Joaquim T. Roque</name>
+      <id>PG50502</id>
+      <gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
+    </author>
+    <uc>Representação e Processamento de Conhecimento na Web</uc>
+
+  </meta>
+
+  <summary>
+
+    Aplicando os conhecimentos adquiridos sobre formulários HTML e métodos HTTP (<b>POST</b> e
+    <b>GET</b>), é-nos proposto que se desenvolve uma pequena <i>webpage</i>, cujo objetivo é
+    funcionar como uma <i>ToDo List</i>, ou seja, deverá suportar a possibilidade de se adicionarem
+    novas tarefas, bem como finalizar/remover uma tarefa.
+
+  </summary>
+
+  <results>
+
+    <result path="server.js">
+      Servidor NodeJS
+    </result>
+
+    <result path="htmlPage.js">
+      Módulo que contém a função geradora do HTML da página
+    </result>
+
+  </results>
+
+</manifest>

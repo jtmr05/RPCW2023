@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  .w3-container.w3-cell-middle.w3-green
+    .w3-center
+      h1 New task...
+      h5 Create a new task
+
+      form.w3-container(method='POST')
+        fieldset
+          legend Responsável:
+          input.w3-input.w3-round(type='text' name='name')
+        fieldset
+          legend Descrição:
+          input.w3-input.w3-round(type='text' name='description')
+        fieldset
+          legend Data limite:
+          input.w3-input.w3-round(type='date' name='date')
+        br
+        br
+
+        .w3-left-align
+          button.w3-btn.w3-round.w3-white.w3-left-align(type='submit') Register
+          button.w3-btn.w3-round.w3-white.w3-left-align(type='reset' style='margin-left:3px;') Clear
+        br
+
+  .w3-cell-row
+    .w3-container.w3-blue.w3-cell.w3-mobile
+      .w3-center
+        h3 Pending Tasks
+        table.w3-table.w3-border.w3-striped
+          tr
+            th Responsável
+            th Descrição
+            th Data limite
+          each task in pendingTasks
+            tr(style='color:black;')
+              td= task.name
+              td= task.description
+              td= task.date
+              td
+                a(href=`/tasks/confirm/${task.id}`)
+                  button.w3-button.w3-round.w3-ripple(type='button') ✔️
+        br
+        br
+
+    .w3-container.w3-red.w3-cell.w3-mobile
+      .w3-center
+        h3 Completed Tasks
+        table.w3-table.w3-border.w3-striped
+          tr
+            th Responsável
+            th Descrição
+            th Data limite
+          each task in completedTasks
+            tr(style='color:black;')
+              td= task.name
+              td= task.description
+              td= task.date
+              td
+                a(href=`/tasks/delete/${task.id}`)
+                  button.w3-button.w3-round.w3-ripple(type='button') 🗙
+        br
+        br
