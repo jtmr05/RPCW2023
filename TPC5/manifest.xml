@@ -3,7 +3,7 @@
 
   <meta>
 
-    <title>TPC4: Desenvolvimento de uma <i>ToDo List</i></title>
+    <title>TPC5: Reimplementação da <i>ToDo List</i> usando ExpressJS</title>
     <date>2023-03-13</date>
     <author>
       <name>Joaquim T. Roque</name>
@@ -16,21 +16,24 @@
 
   <summary>
 
-    Aplicando os conhecimentos adquiridos sobre formulários HTML e métodos HTTP (<b>POST</b> e
-    <b>GET</b>), é-nos proposto que se desenvolve uma pequena <i>webpage</i>, cujo objetivo é
-    funcionar como uma <i>ToDo List</i>, ou seja, deverá suportar a possibilidade de se adicionarem
-    novas tarefas, bem como finalizar/remover uma tarefa.
+    Para o TPC5, o objetivo passa por reimplementar a página <i>web</i> do trabalho
+	anterior, segundo uma nova arquitetura, concretamente recorrendo ao <i>framework</i>
+	<b>ExpressJS</b>.
 
   </summary>
 
   <results>
 
-    <result path="server.js">
-      Servidor NodeJS
+	<result path="controllers/task.js">
+	  Controlador de comunicação com o <i>dataserver</i> para as tarefas
     </result>
 
-    <result path="htmlPage.js">
-      Módulo que contém a função geradora do HTML da página
+	<result path="routes/tasks.js">
+	  Roteador para as tarefas
+    </result>
+
+	<result path="views/tasks.pug">
+	  Template HTML escrito em Pug
     </result>
 
   </results>
