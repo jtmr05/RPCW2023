@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+
+  <meta>
+
+    <title>TPC5: Reimplementação do TPC5 com MongoDB</title>
+    <date>2023-03-20</date>
+    <author>
+      <name>Joaquim T. Roque</name>
+      <id>PG50502</id>
+      <gitlink>https://github.com/jtmr05/RPCW2023</gitlink>
+    </author>
+    <uc>Representação e Processamento de Conhecimento na Web</uc>
+
+  </meta>
+
+  <summary>
+
+    Para o TPC6, o objetivo passa por reimplementar a página <i>web</i> do trabalho
+    anterior. Nesta iteração, o servidor de dados deve ser o <b>MongoDB</b>.
+
+  </summary>
+
+  <results></results>
+
+</manifest>
