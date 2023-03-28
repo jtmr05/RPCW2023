@@ -29,8 +29,10 @@ module.exports.getPerson = id => {
 
 module.exports.addPerson = p => {
 
-	if(p._id === undefined)
+	if(p._id === undefined){
 		p._id = `a${counter}`;
+		++counter;
+	}
 
     return Person
             .create(p)
